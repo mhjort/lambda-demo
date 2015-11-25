@@ -1,6 +1,6 @@
-(ns lambda-demo.core)
+(ns lambda-demo.core
+  (:require [uswitch.lambada.core :refer [deflambdafn]]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(deflambdafn lambda-demo.LambdaFn
+  [in out ctx]
+  (println "Hello from Lambda"))
