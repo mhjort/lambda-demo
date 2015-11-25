@@ -8,4 +8,10 @@
                  [base64-clj "0.1.1"]
                  [uswitch/lambada "0.1.0"]
                  [com.amazonaws/aws-java-sdk-s3 "1.10.37"]]
+  :profiles {:dev
+             {:dependencies [[amazonica "0.3.39"
+                              :exclusions [com.amazonaws/aws-java-sdk]]
+                             [com.amazonaws/aws-java-sdk-kinesis "1.10.37"]
+                             [com.amazonaws/aws-java-sdk-lambda "1.10.37"]
+                             [com.amazonaws/aws-java-sdk-cloudsearch "1.10.37"]]}}
   :aot [lambda-demo.core])
