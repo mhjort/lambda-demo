@@ -3,7 +3,7 @@
 lein uberjar
 
 aws lambda update-function-code \
-  --region eu-west-1 \
+  --region $1 \
   --function-name LambdaDemo \
   --zip-file fileb://./target/lambda-demo-0.1.0-SNAPSHOT-standalone.jar \
   --publish
