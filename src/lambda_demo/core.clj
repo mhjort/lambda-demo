@@ -8,4 +8,5 @@
   [in out ctx]
   (let [input (parse-stream (io/reader in) true)]
     (println "Hello from Lambda with input" input)
+    (println "Running with encoding" (System/getProperty "file.encoding"))
     (process input)))
