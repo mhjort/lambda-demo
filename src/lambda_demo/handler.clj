@@ -13,14 +13,21 @@
                  (:Records event))]
     (sort raw-rows)))
 
-(defn- store-to-s3 [records]
-  (let [temp-file (File/createTempFile "demo" nil nil)
-        s3-object-key (str (UUID/randomUUID))]
+(defn- write-to-temp-file [records]
+  (let [temp-file (File/createTempFile "demo" nil nil)]
     (.deleteOnExit temp-file)
     (with-open [wrtr (io/writer temp-file)]
       (doseq [line records]
         (.write wrtr (str line "\n"))))
+    temp-file))
+
+(defn- store-to-s3 [records]
+  (let [s3-object-key (str (UUID/randomUUID))
+        temp-file (write-to-temp-file records)]
     (.putObject client (:s3-bucket setup) s3-object-key temp-file)))
 
 (defn process [event]
   (store-to-s3 (sort-input event)))
+
+; This is how to test locally
+;(process {:Records [{:kinesis {:data (base64/encode "soem text")}}]})
