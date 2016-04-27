@@ -6,23 +6,21 @@ Reads events from Kinesis stream and stores them in S3.
 
 ## Installation
 
-* Create IAM role with following rights: Lambda, Kinesis read, Cloudwatch log write, S3 write
-* Create S3 Bucket
+* Clone the repo
+* Setup Lambda environment in `project.clj`.
+  You have to at least change the S3 bucket (and possibly region if you don't want to use Ireland datacenter)
 * Create Kinesis stream
-* Open 'src/lambda-demo/env.clj' and configure setup based on your environment
-* Build "zip" file
+* Open `src/lambda-demo/env.clj` and configure setup based on your environment
+* Install Lambda by running
 
-```
-lein uberjar
-```
+  $ lein lambda install test
 
-* Create Lambda function with name "LambdaDemo", uberjar as zip file, handler as "lambda-demo.LambdaFn", role the one you created before
-* Set your Kinesis stream as an event source (use e.g. 10 as buffer size)
+* This will create a Lambda function with name LambdaDemo with basic setup.
+* Configure Lambda function to use Kinesis stream as an event source.
 * Enter some test data via repl
 
-```
-lein repl
-```
+  $ lein repl
+
 
 ```clojure
 (use 'lambda-demo.kinesis-util)
@@ -30,7 +28,7 @@ lein repl
 (insert-test-data "some-data" 50)
 ```
 
-* Check your S3 bucket. There should be few nicely sorted files
+* Check your S3 bucket. There should be a bunch of sorted files.
 * Profit!!!
 
 If you make any changes to to Lambda code you can redeploy your Lambda function by running:
@@ -41,7 +39,6 @@ If you make any changes to to Lambda code you can redeploy your Lambda function 
 
 ## License
 
-Copyright © 2015 FIXME
+Copyright © 2015-2016 Markus Hjort
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the Eclipse Public License.
