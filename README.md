@@ -33,9 +33,7 @@ Reads events from Kinesis stream and stores them in S3.
 
 If you make any changes to to Lambda code you can redeploy your Lambda function by running:
 
-```
-./update-lambda <your-region>
-```
+  $ lein lambda update test
 
 ## License
 
