@@ -8,7 +8,7 @@
                  [base64-clj "0.1.1"]
                  [uswitch/lambada "0.1.0"]
                  [com.amazonaws/aws-java-sdk-s3 "1.10.37"]]
-  :plugins [[lein-clj-lambda "0.3.0"]]
+  :plugins [[lein-clj-lambda "0.4.1"]]
   :lambda {"test" [{:function-name "LambdaDemo"
                     :handler "lambda-demo.LambdaFn"
                     :memory-size 1024
